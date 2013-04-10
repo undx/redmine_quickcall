@@ -1,0 +1,5 @@
+en:
+  quickcall: "Quickcall"
+  quickcall_label: "Quickcall"
+  make_quickcall: "Make a quick call for %{user}"
+  quickcall_initiated_log: "*Quickcall initiated by %{user}*"

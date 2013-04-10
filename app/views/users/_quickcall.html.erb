@@ -1,0 +1,24 @@
+<% if User.current.admin? || User.current.servicedesk? %>
+  <h3><%= l(:quickcall) %></h3>
+  <%= form_tag(:controller=>"quickcall", :action=>"create") do %>
+    <%= hidden_field_tag :author_id,  @user.id %>
+    <%= hidden_field_tag :made_by_id, User.current.id %>
+
+    <fieldset class="box tabular">
+      <legend><%= t(:make_quickcall, :user => @user.name) %></legend>
+      <p>
+      <%= label_tag(:project_id, l(:field_project))%>
+      <%= select_tag :project_id, options_for_select(@user.projects.map {|p| [p.name, p.id]}) %>
+      </p>
+      <p>
+      <%= label_tag(:tracker_id, l(:field_tracker))%>
+      <%= select_tag :tracker_id, options_for_select(Tracker.all.map {|p| [p.name, p.id]}) %>
+      </p>
+      <p>
+      <%= label_tag(:project_id, l(:field_subject))%>
+      <%= text_field_tag  :subject, nil,  :size=>30 %>
+      </p>
+    </fieldset>
+    <%= submit_tag :quickcall %>
+  <% end %>
+<% end %>
